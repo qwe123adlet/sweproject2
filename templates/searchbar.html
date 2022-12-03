@@ -1,0 +1,44 @@
+{% load static %}
+{{error}}
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+{% if post or post1 or post2%}
+<body>
+<header id="hdshow">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+          <div class="navbar-header">
+    <h1>Search Result Found</h1>
+</div></div></nav>
+</header>
+    {% if post %}
+    <center><h2 class="opening">By Name</h2></center>
+    {% endif %}
+    {% if post1 %}
+    <center><h2 class="opening">By Specialization</h2></center>
+    {% endif %}
+    {% if post2 %}
+    <center><h2 class="opening">By Procedure</h2></center>
+    {% endif %}
+{% for i in post %}
+    <center>
+    <h2 class="show"><a href="/doctortable/{{i.id}}" class="btn btn-secondary">{{ i.empname}}</a></h2>
+    </center>    
+{% endfor %}
+{% for i in post1 %}
+    <center>
+    <h2 class = "show"><a href="/doctortable/{{i.id}}" class="btn btn-secondary">{{ i.specializationid}} : {{i.empname}}</a>
+    </h2></center>
+</body>                                                                                             
+{% endfor %}
+{% for i in post2 %}
+    <center><h2 class = "show"><a href="/doctortable/{{i.id}}" class="btn btn-secondary">{{ i.category}} : {{i.empname}}</a></h2></center>
+{% endfor %}
+    <a href = "{% url 'showspecialization' %}" class="btn btn-info">Back</a>
+    {% else %}
+    <body id="bodyempt">
+    <center><h1 id="empty">Nothing found!</h1></center>
+    <a href = "{% url 'showspecialization' %}" class="btn btn-info" id="error">Back</a>
+</body>
+{% endif %}

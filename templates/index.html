@@ -1,0 +1,202 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <title>CRUD OPERATION WITH POSTGRESQL</title>
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <center>
+        <header>
+            <nav id="header-nav" class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <div class="container" align="left">
+                  <div class="navbar-header">
+           <h1>HOSPITAL MANAGEMENT SYSTEM</h1>
+        <h2>WRITTEN BY GROUP 4</h2>
+        <p id = "exit"><a href="{% url 'logout' %}" class="btn btn-danger">Log Out</a></p>
+    </div></div></nav>
+</header>
+
+        <!-- <a href = "{% url 'insertemp' %}" class="btn btn-primary" id="doctor">Create New Doctor</a> -->
+        <!-- <a href = "{% url 'insertpatient' %}" class="btn btn-primary">Create New Patient</a> -->
+        <div class = "main">
+        <table border="1" class="table table-striped table-bordered">
+            <h3>DOCTOR TABLE</h3>
+
+            <tr>
+                <th>ID</th>
+                <th>Doctor Name</th>
+                <th>Date of Birth</th>
+                <th>IIN</th>
+                <th>Contact Number</th>
+                <th>Department ID</th>
+                <th>Specilization ID</th>
+                <th>Experience</th>
+                <th>Photo</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Schedule</th>
+                <th>Education</th>
+                <th>Rating</th>
+                <th>Address</th>
+                <th>Photo_2</th>
+                <th colspan="2">Update</th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td>{{result.id}}</td>
+                <td>{{result.empname}}</td>
+                <td>{{result.dateofbirth}}</td>
+                <td>{{result.iin}}</td>
+                <td>{{result.contact}}</td>
+                <td>{{result.departmentid}}</td>
+                <td>{{result.specializationid}}</td>
+                <td>{{result.experience}}</td>
+                <td>{{result.photo}}</td>
+                <td>{{result.category}}</td>
+                <td>{{result.price}}</td>
+                <td>{{result.schedule}}</td>
+                <td>{{result.education}}</td>
+                <td>{{result.rating}}</td>
+                <td>{{result.address}}</td>
+                
+                <td><img src="{% static 'img/img.jpg' %}" width = "150"></td>
+                <td><a href="edit/{{result.id}}" class="btn btn-secondary">Edit</a></td>
+                <td><a href="Delete/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
+            </tr>
+            
+            {% endfor %}
+
+        </table>
+        <div class = "bottom">
+        <a href = "{% url 'insertemp' %}" class="btn btn-primary" id="doctor">Create New Doctor</a>     
+        </div>
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if data.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ data.previous_page_number }}">{{ data.previous_page_number }}</a>
+            {% endif %}
+            <span class="current">
+                Page {{ data.number }} of {{ data.paginator.num_pages }}
+            </span>
+            {% if data.has_next %}
+                <a href="?page={{ data.next_page_number }}">{{ data.next_page_number }}</a>
+                <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+
+            {% endif %}
+        </span>
+    </div>
+    <hr/>
+        <div class="main">
+        <h3>PATIENT TABLE</h3>
+        <tr>
+        <table border="2" class="table table-striped table-bordered">
+                <th>Patient ID</th>
+                <th>Date of Birth</th>
+                <th>IIN</th>
+                <th>Full Name</th>
+                <th>Blood Group</th>
+                <th>Emergency contact number</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Martial status</th>
+                <th>Registration date</th>
+                <th>Photo</th>
+                <th colspan="2">Update</th>
+            </tr>
+            {% for result in patdata %}
+            <tr>
+                <td>{{result.id}}</td>
+                <td>{{result.dateofbirth}}</td>
+                <td>{{result.iin}}</td>
+                <td>{{result.fullname}}</td>
+                <td>{{result.bloodgroup}}</td>
+                <td>{{result.emergency_number}}</td>
+
+                <td>{{result.contact}}</td>
+                <td>{{result.address}}</td>
+                <td>{{result.marital}}</td>
+                <td>{{result.registration}}</td>
+                <td><img src="https://image.shutterstock.com/image-vector/user-icon-vector-260nw-249026119.jpg" width = "150"></td>
+
+                <td><a href="editpatient/{{result.id}}" class="btn btn-secondary">Edit</a></td>
+                <td><a href="DeletePatient/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+        <div class = "bottom">
+        <a href = "{% url 'insertpatient' %}" class="btn btn-primary">Create New Patient</a>
+        </div>
+    </div>
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if patdata.has_previous %}
+                <a href="?page1=1">&laquo; first</a>
+                <a href="?page1={{ patdata.previous_page_number }}">{{ patdata.previous_page_number }}</a>
+            {% endif %}
+            <span class="current">
+                Page {{ patdata.number }} of {{ patdata.paginator.num_pages }}
+            </span>
+            {% if patdata.has_next %}
+                <a href="?page1={{ patdata.next_page_number }}">{{ patdata.next_page_number }}</a>
+                <a href="?page1={{ patdata.paginator.num_pages }}">last &raquo;</a>
+
+            {% endif %}
+        </span>
+    </div>
+    <hr/>
+    <div class = "main">
+        <table border="1" class="table table-striped table-bordered">
+            <h3>APPOINTMENTS TABLE</h3>
+
+            <tr>
+                <th>Patient Name</th>
+                <th>Appointment Date</th>
+                <th>Doctor Specilization</th>
+                <th>Doctor Name</th>
+                <th>Contacts</th>
+                <th>Update</th>
+            </tr>
+            {% for result in appdata %}
+            <tr>
+                <td>{{result.fullname}}</td>
+                <td>{{result.app_date}}</td>
+                <td>{{result.specializationid}}</td>
+                <td>{{result.empname}}</td>
+                <td>{{result.contact}}</td>
+                <td><a href="DeleteAppointment/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
+            </tr>
+
+            {% endfor %}
+        </table>
+        
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if appdata.has_previous %}
+                <a href="?page2=1">&laquo; first</a>
+                <a href="?page2={{ appdata.previous_page_number }}">{{ appdata.previous_page_number }}</a>
+            {% endif %}
+            <span class="current">
+                Page {{ appdata.number }} of {{ appdata.paginator.num_pages }}
+            </span>
+            {% if appdata.has_next %}
+                <a href="?page2={{ appdata.next_page_number }}">{{ appdata.next_page_number }}</a>
+                <a href="?page2={{ appdata.paginator.num_pages }}">last &raquo;</a>
+
+            {% endif %}
+        </span>
+    </div>
+
+    </center>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <a href = "{% url 'showemp' %}" class="btn btn-primary" id = "logged">Admin only</a>
+  </div>
+
+{% else %}
+<header>
+  <nav id="header-nav" class="navbar navbar-light">
+      <div align="left">
+        <div class="navbar-header">
+ <h1>HOSPITAL MANAGEMENT SYSTEM</h1>
+<h2>WRITTEN BY GROUP 4</h2>
+</div></div></nav>
+</header>
+
+  <div class="container1">
+  <h3 class="text-center text-info">For Admin</h3>
+  <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+  </div>
+  <br>
+  <div class="container2">
+    <h3 class="text-center text-info">For Patients</h3>
+  <a href="{% url 'showspecialization' %}" class="btn btn-primary">For patients</a>
+</div>
+{% endif %}
+{% endblock %}

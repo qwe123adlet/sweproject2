@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>SPECIALIZATION TABLE</title>
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <center>
+    <header>
+        <nav id="header-nav" class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="container" align="left">
+              <div class="navbar-header">
+
+    <form method = "GET" action="{% url 'searchbar' %}" id="search">
+        <input type ="text" list="docsname" Placeholder="Search Doctors" class="form-control" name = "search" class="form-control">
+        <button type ="submit" class="btn btn-info" id="butn">Search</button>
+        <datalist id="docsname">
+        </datalist>    
+      </form>
+      <h1>SPECIALIZATION TABLE</h1>
+    </div></div></nav>
+</header>
+<div class="tables">
+        <table border="1" class="table table-striped table-bordered">
+            <tr>
+            <tr>
+                <th>SpecializationID</th>
+                <th>Specialization</th>
+                <th>Table with doctors</th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td>{{result.specializationid}}</td>
+                <td>{{result.specialization}}</td>
+                <td><a href="doctortableSpec/{{result.id}}" class="btn btn-secondary" id="checkdoc">Check doctors</a></td>
+            </tr>
+            
+            {% endfor %}
+        </div>
+        <a href = "{% url 'home' %}" class="btn btn-info" id="showspec">Home page</a>
+    </center>
+</body>
+</html>

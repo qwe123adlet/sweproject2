@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>DELETE OPERATION</title>
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <header id="hdshow">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <div class="container">
+              <div class="navbar-header">
+                <h1>SUCCESSFULLY DELETED</h1>
+            </div></div></nav>
+        </header>
+    <center>
+        <a href = "{% url 'showemp' %}" class="btn btn-primary delete">Return To Homepage</a>
+    </center>
+</body>
+</html>

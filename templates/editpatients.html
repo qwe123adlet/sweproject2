@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>CRUD OPERATION WITH POSTGRESQL</title>
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <center>
+        <header>
+            <nav id="header-nav" class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <div class="container" align="left">
+                  <div class="navbar-header">
+                        <h1>UPDATE PATIENT INFORMATION</h1>
+                    </div></div></nav>
+                </header>
+                <div class="tables">
+        
+        <form method="POST" action = "/UpdatePatient/{{EmpModel.id}}">
+            {% csrf_token %}
+        
+        <table border="1" class="table table-striped table-bordered">
+           <tr>
+                <td>Patient Id</td>
+                <td><input type="text" name="id" value="{{EmpModel.id}}" readonly></td>
+            </tr>
+                <td>dateOfBirth</td>
+                <td><input type="date" name="dateofbirth" value="Enter in format of YY-MM-DD"></td>
+            </tr>
+            <tr>
+                <td>IIN</td>
+                <td><input type="text" name="iin" value="{{EmpModel.iin}}"></td>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td><input type="text" name="fullname" value="{{EmpModel.fullname}}"></td>
+            </tr>
+            <tr>
+                <td>Blood Group</td>
+                <td><input type="text" name="bloodgroup" value="{{EmpModel.bloodgroup}}"></td>
+            </tr>
+            <tr>
+                <td>Emergency contact number</td>
+                <td><input type="text" name="emergency_number" value="{{EmpModel.emergency_number}}"></td>
+            </tr>
+            <tr>
+                <td>Contact number</td>
+                <td><input type="text" name="contact" value="{{EmpModel.contact}}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" value="{{EmpModel.address}}"></td>
+            </tr>
+            <tr>
+                <td>Marital Status</td>
+                <td><input type="text" name="marital" value="{{EmpModel.marital}}"></td>
+            </tr>
+            <tr>
+                <td>Registration Date</td>
+                <td><input type="date" name="registration" value="Enter in format of YY-MM-DD"></td>
+            </tr>
+           
+            <tr>
+                <td><input type="submit" value="Update Record" class="btn btn-success"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style ="color:green">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href = "{% url 'showemp' %}"  class="btn btn-info" id="editp">Back</a>
+
+    </form>
+    </div>
+    </center>
+</body>
+</html>

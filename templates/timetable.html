@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>DOCTOR TABLE</title>
+    <link rel="stylesheet" href="{% static 'CRUDOperation/css/bootstrap.css' %}">    
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <center>
+        <header>
+            <nav id="header-nav" class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <div class="container" align="left">
+                  <div class="navbar-header">
+                    <h1>DOCTOR TABLE</h1>
+                    <a href = "{% url 'showspecialization' %}" class="btn btn-info">Back</a>
+                </div></div></nav>
+            </header>
+            <div class="tables">
+        <table border="1" class="table table-striped table-bordered">
+            {% if data1 %}
+<tr>
+    <tr>
+        <th>time slot id</th>
+        <th>start time</th>
+        <th>end time</th>
+    </tr>
+    {% for result in data1 %}
+    <tr>
+        <td>{{result.id}}</td>
+        <td>{{result.starttime}}</td>
+        <td>{{result.endtime}}</td>
+    </tr>
+</div>
+    {% endfor %}
+        {% else %}
+    <center><h2>No time</h2></center>
+    {% endif %}
+</body>
+</html>
