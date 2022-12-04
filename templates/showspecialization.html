@@ -17,6 +17,9 @@
         <input type ="text" list="docsname" Placeholder="Search Doctors" class="form-control" name = "search" class="form-control">
         <button type ="submit" class="btn btn-info" id="butn">Search</button>
         <datalist id="docsname">
+            {% for result in showdocs %}
+                <option value="{{result.empname}}">
+            {% endfor %}
         </datalist>    
       </form>
       <h1>SPECIALIZATION TABLE</h1>
