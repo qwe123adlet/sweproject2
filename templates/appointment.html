@@ -29,31 +29,31 @@
             </tr>
            
             <tr>
-                <td>Date schedule</td>
+                <td>Date chedule</td>
                 <td><input type="date" placeholder="Appointment date" name="app_date"></td>
             </tr>
 
             <tr>
                 <td>Start time</td>
-                <td><input type="time" placeholder="Appointment date" name="app_start"></td>
+                <td><input type="time" name="app_start" value = "{{timeslot.starttime}}" readonly></td>
             </tr>
 
             <tr>
                 <td>End time</td>
-                <td><input type="time" placeholder="Appointment date" name="app_end"></td>
-            </tr>            
+                <td><input type="time" name="app_end" min="09:00" max="18:00" value = "{{timeslot.endtime}}" readonly></td>
+            </tr>
 
             <tr>
                 <td>Specialization ID</td>
                 
                  
-                <td><input type="text" placeholder="Contact" name="contact" value = "{{specid}}" readonly></td>
+                <td><input type="text" placeholder="Contact" name="contact" value = "{{doctor.id}}" readonly></td>
         
             </tr>
             <tr>
                 <td>Full name of the doctor</td>
                   
-                <td><input type="text" placeholder="Contact" name="contact" value = "{{name}}" readonly></td>
+                <td><input type="text" placeholder="Contact" name="contact" value = "{{doctor.empname}}" readonly></td>
 
             </tr>
             <tr>

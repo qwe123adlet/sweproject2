@@ -36,7 +36,6 @@
                 <th>Rating</th>
                 <th>Address</th>
                 <th>Photo_2</th>
-                <th colspan="2">TimeTable</th>
                 <th colspan="2">Appointment</th>
             </tr>
             {% for result in data %}
@@ -56,8 +55,7 @@
                 <td>{{result.rating}}</td>
                 <td>{{result.address}}</td>
                 <td><img src="{% static 'img/img.jpg' %}" width = "150"></td>
-                <td><a href="timetable/{{result.id}}" class="btn btn-secondary">Check timetable</a></td>
-                <td><a href="appointment/{{result.id}}" class="btn btn-secondary">make an appointment</a></td>                
+                <td><a href="timetable/{{result.id}}" class="btn btn-secondary">Make an appointment</a></td>
 
             </tr>
         </div>
