@@ -65,7 +65,7 @@ def showemp(request):
 
 def insertemp(request):
     if request.method == "POST":
-        if request.POST.get('empname') and request.POST.get('dateofbirth') and request.POST.get('iin') and request.POST.get('contact') and request.POST.get('departmentid') and request.POST.get('specializationid') and request.POST.get('experience') and request.POST.get('photo') and request.POST.get('category') and request.POST.get('price') and request.POST.get('schedule') and request.POST.get('education') and request.POST.get('rating') and request.POST.get('address'):
+        if request.POST.get('empname') and request.POST.get('dateofbirth') and request.POST.get('iin') and request.POST.get('contact') and request.POST.get('departmentid') and request.POST.get('specializationid') and request.POST.get('experience') and request.POST.get('photo') and request.POST.get('category') and request.POST.get('price') and request.POST.get('education') and request.POST.get('rating') and request.POST.get('address') and request.POST.get('schedulestart') and request.POST.get('scheduleend'):
             saverecord = EmpModel()
             saverecord.empname = request.POST.get('empname') 
             saverecord.dateofbirth = request.POST.get('dateofbirth')
@@ -77,7 +77,8 @@ def insertemp(request):
             saverecord.photo = request.POST.get('photo')
             saverecord.category = request.POST.get('category')
             saverecord.price = request.POST.get('price')
-            saverecord.schedule = request.POST.get('schedule')
+            saverecord.schedulestart = request.POST.get('schedulestart')
+            saverecord.scheduleend = request.POST.get('scheduleend')
             saverecord.education = request.POST.get('education')
             saverecord.rating = request.POST.get('rating')
             saverecord.address = request.POST.get('address')
@@ -129,14 +130,13 @@ def doctortable(request, id):
 
 def timetable(request, id):
     showtime = TimeSlots.objects.all()
-    return render(request, 'timetable.html',{"data1": showtime})      
+    doctor = EmpModel.objects.get(id=id)
+    return render(request, 'timetable.html',{"data1": showtime, "doctor" : doctor})      
 
 def showspecialization(request):
     results = EmpModel.objects.all   
     showdoctors = SpecType.objects.all()
     return render(request, 'showspecialization.html',{"data":showdoctors, "showdocs":results})
-
-
 
 def searchbar(request):
     if request.method == 'GET':
@@ -150,25 +150,28 @@ def searchbar(request):
         post2 = EmpModel.objects.all().filter(category__icontains = search)
         return render(request, 'searchbar.html', {"post2": post2})
 
-def makeappointment(request, id):
-    doctor = EmpModel.objects.get(id=id)
+def makeappointment(request, id2, id):
+    doctor = EmpModel.objects.get(id = id2)
     specid = doctor.specializationid
     name = doctor.empname
+    timeslot = TimeSlots.objects.get(id = id)
+    start_time = timeslot.starttime
+    end_time = timeslot.endtime
     if request.method == "POST":
-        if request.POST.get('fullname') and request.POST.get('app_date') and request.POST.get('contact') and request.POST.get('app_start') and request.POST.get('app_end'):
+        if request.POST.get('fullname') and request.POST.get('app_date') and request.POST.get('contact'):
             saverecord = Appointment()
             saverecord.fullname = request.POST.get('fullname')
-            saverecord.app_date = request.POST.get('app_date')    
-            saverecord.app_start = request.POST.get('app_start')            
-            saverecord.app_end = request.POST.get('app_end')                       
+            saverecord.app_date = request.POST.get('app_date')
+            saverecord.app_start = start_time
+            saverecord.app_end = end_time
             saverecord.specializationid = specid
             saverecord.empname = name
             saverecord.contact = request.POST.get('contact')
             saverecord.save()
             messages.success(request, "Appointment for name " + saverecord.fullname + " has been added successfully")
-            return render(request,'appointment.html', {"specid" : specid, "name" : name})
+            return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
     else:
-        return render(request,'appointment.html', {"specid" : specid, "name" : name})
+        return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
 
 def doctortableSpec(request,id):
     showdoctors = EmpModel.objects.all().filter(specializationid=id)

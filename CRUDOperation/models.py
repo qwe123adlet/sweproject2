@@ -30,6 +30,9 @@ class EmpModel(models.Model):
     def __str__(self):
         return self.empname
 
+    def __str__(self):
+        return self.specializationid
+
     class Meta:
         db_table = "employee"
 

@@ -42,6 +42,5 @@ urlpatterns = [
     path('showspecialization/doctortableSpec/<int:id>', views.doctortableSpec, name = "doctortableSpec"),
     path('searchbar/', views.searchbar, name="searchbar"),
     path('doctortable/<int:id>', views.doctortable, name = "doctortable"),
-    path('showspecialization/doctortableSpec/timetable/appointment/<int:id>', views.makeappointment, name = "makeappointment"),
-    path('showspecialization/doctortableSpec/appointment/<int:id>', views.makeappointment, name = "makeappointment2"),    
+    path('showspecialization/doctortableSpec/timetable/appointment/<int:id2>/<int:id>', views.makeappointment, name = "makeappointment"),
 ]

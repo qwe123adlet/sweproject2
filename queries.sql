@@ -40,6 +40,10 @@ CREATE TABLE employee (
 );
 INSERT INTO employee VALUES(DEFAULT, 'name', '2000-10-10', 'iin', '100', 'depid', '1', 'category', '500', 'photo', '09:00:00', '18:00:00', '22', 'education', '10', 'address');
 INSERT INTO employee VALUES(DEFAULT, 'name2', '2001-10-10', 'iin2', '200', 'depid2', '1', 'category2', '5002', 'photo2', '09:00:00', '18:00:00', '222', 'education2', '102', 'address2');
+INSERT INTO employee VALUES(DEFAULT, 'nameeee', '2000-10-10', 'iin', '100', 'depid', '2', 'category', '500', 'photo', '09:00:00', '18:00:00', '22', 'education', '10', 'address');
+INSERT INTO employee VALUES(DEFAULT, 'adlet', '2001-10-10', 'iin2', '200', 'depid2', '2', 'category2', '5002', 'photo2', '09:00:00', '18:00:00', '222', 'education2', '102', 'address2');
+INSERT INTO employee VALUES(DEFAULT, 'aibek', '2000-10-10', 'iin', '100', 'depid', '3', 'category', '500', 'photo', '09:00:00', '18:00:00', '22', 'education', '10', 'address');
+INSERT INTO employee VALUES(DEFAULT, 'arslan', '2001-10-10', 'iin2', '200', 'depid2', '3', 'category2', '5002', 'photo2', '09:00:00', '18:00:00', '222', 'education2', '102', 'address2');
 
 DROP TABLE IF EXISTS patient CASCADE;
 
@@ -73,8 +77,8 @@ DROP TABLE IF EXISTS timeslots CASCADE;
 
 CREATE TABLE timeslots (
 		id SERIAL UNIQUE,
-		starttime TIME,
-		endtime TIME,
+		starttime VARCHAR(12),
+		endtime varchar(12),
 		PRIMARY KEY(id)
 );	
 
