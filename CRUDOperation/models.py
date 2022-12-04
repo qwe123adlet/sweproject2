@@ -21,8 +21,8 @@ class EmpModel(models.Model):
     photo = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     price = models.IntegerField()
-    schedulestart = models.DateField()
-    scheduleend = models.DateField()
+    schedulestart = models.TimeField()
+    scheduleend = models.TimeField()
     education = models.CharField(max_length=100)
     rating = models.IntegerField()
     address = models.CharField(max_length=100)
@@ -54,7 +54,9 @@ class Appointment(models.Model):
     specializationid = models.CharField(max_length=100)
     empname = models.CharField(max_length=100)
     contact = models.CharField(max_length=100)
-
+    app_start = models.TimeField()
+    app_end = models.TimeField()
+    
     class Meta:
         db_table = "appointment"
 

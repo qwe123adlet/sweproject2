@@ -127,7 +127,7 @@ def doctortable(request, id):
     showdoctors = EmpModel.objects.all().filter(id=id)
     return render(request,'doctortable.html',{"data":showdoctors})
 
-def timetable(request):
+def timetable(request, id):
     showtime = TimeSlots.objects.all()
     return render(request, 'timetable.html',{"data1": showtime})      
 
@@ -155,10 +155,12 @@ def makeappointment(request, id):
     specid = doctor.specializationid
     name = doctor.empname
     if request.method == "POST":
-        if request.POST.get('fullname') and request.POST.get('app_date') and request.POST.get('contact'):
+        if request.POST.get('fullname') and request.POST.get('app_date') and request.POST.get('contact') and request.POST.get('app_start') and request.POST.get('app_end'):
             saverecord = Appointment()
             saverecord.fullname = request.POST.get('fullname')
-            saverecord.app_date = request.POST.get('app_date')
+            saverecord.app_date = request.POST.get('app_date')    
+            saverecord.app_start = request.POST.get('app_start')            
+            saverecord.app_end = request.POST.get('app_end')                       
             saverecord.specializationid = specid
             saverecord.empname = name
             saverecord.contact = request.POST.get('contact')
