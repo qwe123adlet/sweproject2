@@ -147,7 +147,7 @@ def searchbar(request):
         post1 = EmpModel.objects.all().filter(specializationid__icontains = search)
         if(post1):
             return render(request, 'searchbar.html', {"post1": post1})
-        post2 = EmpModel.objects.all().filter(category__icontains = search)
+        post2 = SpecType.objects.all().filter(specialization__icontains = search)
         return render(request, 'searchbar.html', {"post2": post2})
 
 def makeappointment(request, id2, id):
@@ -174,7 +174,3 @@ def makeappointment(request, id2, id):
             return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
     else:
         return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
-
-def doctortableSpec(request,id):
-    showdoctors = EmpModel.objects.all().filter(specializationid=id)
-    return render(request, 'doctortableSpec.html',{"data":showdoctors})    
