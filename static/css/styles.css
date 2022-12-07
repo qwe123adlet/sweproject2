@@ -178,3 +178,29 @@ header{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.img_div{
+  /* padding: 0; */
+  margin: 20px;
+  position: relative;
+  height: 300px;
+  text-align: center;
+  box-shadow: 3px 3px grey, -1em 0 .4em gold;
+}
+.searchbar_img{
+  max-width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  margin: 10px;
+}
+.searchbar_name{
+  text-align: center;
+}
+.time{
+  font-size: larger;
+  text-align:left;
+  margin-top: 50px;
+  margin-left: 25%;
+}

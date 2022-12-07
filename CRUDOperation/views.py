@@ -155,19 +155,21 @@ def makeappointment(request, id2, id):
     specid = doctor.specializationid
     name = doctor.empname
     timeslot = TimeSlots.objects.get(id = id)
+    date_time = timeslot.timedate
     start_time = timeslot.starttime
     end_time = timeslot.endtime
     if request.method == "POST":
-        if request.POST.get('fullname') and request.POST.get('app_date') and request.POST.get('contact'):
+        if request.POST.get('fullname') and request.POST.get('contact'):
             saverecord = Appointment()
             saverecord.fullname = request.POST.get('fullname')
-            saverecord.app_date = request.POST.get('app_date')
+            saverecord.app_date = date_time
             saverecord.app_start = start_time
             saverecord.app_end = end_time
             saverecord.specializationid = specid
             saverecord.empname = name
             saverecord.contact = request.POST.get('contact')
             saverecord.save()
+            timeslot.delete()
             messages.success(request, "Appointment for name " + saverecord.fullname + " has been added successfully")
             return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
     else:

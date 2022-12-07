@@ -64,6 +64,7 @@ class Appointment(models.Model):
         db_table = "appointment"
 
 class TimeSlots(models.Model):
+    timedate = models.DateField(max_length=100)
     starttime = models.TimeField(max_length=100)
     endtime = models.TimeField(max_length=100)
 
