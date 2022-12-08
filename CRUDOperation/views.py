@@ -136,7 +136,8 @@ def timetable(request, id):
 def showspecialization(request):
     results = EmpModel.objects.all   
     showdoctors = SpecType.objects.all()
-    return render(request, 'showspecialization.html',{"data":showdoctors, "showdocs":results})
+    proced = Procedures.objects.all()
+    return render(request, 'showspecialization.html',{"data":showdoctors, "showdocs":results, "procedure": proced})
 
 def searchbar(request):
     if request.method == 'GET':
@@ -144,7 +145,7 @@ def searchbar(request):
         post = EmpModel.objects.all().filter(empname__icontains = search)
         if(post):
             return render(request, 'searchbar.html', {"post": post})
-        post1 = EmpModel.objects.all().filter(specializationid__icontains = search)
+        post1 = Procedures.objects.all().filter(typeofprocedure__icontains = search)
         if(post1):
             return render(request, 'searchbar.html', {"post1": post1})
         post2 = SpecType.objects.all().filter(specialization__icontains = search)
@@ -154,12 +155,13 @@ def makeappointment(request, id2, id):
     doctor = EmpModel.objects.get(id = id2)
     specid = doctor.specializationid
     name = doctor.empname
+    procedures = Procedures.objects.filter(procid=specid).values()
     timeslot = TimeSlots.objects.get(id = id)
     date_time = timeslot.timedate
     start_time = timeslot.starttime
     end_time = timeslot.endtime
     if request.method == "POST":
-        if request.POST.get('fullname') and request.POST.get('contact'):
+        if request.POST.get('fullname') and request.POST.get('contact') and request.POST.get('procedure'):
             saverecord = Appointment()
             saverecord.fullname = request.POST.get('fullname')
             saverecord.app_date = date_time
@@ -167,10 +169,13 @@ def makeappointment(request, id2, id):
             saverecord.app_end = end_time
             saverecord.specializationid = specid
             saverecord.empname = name
+            saverecord.procedure = request.POST.get('procedure')
             saverecord.contact = request.POST.get('contact')
             saverecord.save()
             timeslot.delete()
             messages.success(request, "Appointment for name " + saverecord.fullname + " has been added successfully")
-            return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
+            return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot, "procedures" : procedures})
     else:
-        return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot})
+        return render(request,'appointment.html', {"doctor" : doctor, "timeslot" : timeslot, "procedures" : procedures})
+
+ 

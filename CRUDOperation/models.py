@@ -7,6 +7,10 @@ class SpecType(models.Model):
     specializationid = models.CharField(max_length = 100)
     specialization = models.CharField(max_length = 100)
 
+    def __str__(self):
+        return self.specialization  
+
+
     class Meta:
         db_table = "specializationtype"
 
@@ -59,6 +63,7 @@ class Appointment(models.Model):
     contact = models.CharField(max_length=100)
     app_start = models.TimeField()
     app_end = models.TimeField()
+    procedure = models.CharField(max_length=100)
     
     class Meta:
         db_table = "appointment"
@@ -70,4 +75,14 @@ class TimeSlots(models.Model):
 
     class Meta:
         db_table = "timeslots"
+
+class Procedures(models.Model):
+    procid = models.CharField(max_length=100)
+    typeofprocedure = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.typeofprocedure  
+
+    class Meta:
+        db_table = "procedures"
 
