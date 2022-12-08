@@ -40,7 +40,7 @@
                 <th>Education</th>
                 <th>Rating</th>
                 <th>Address</th>
-                <th>Photo_2</th>
+                <th class="photo1">Photo_2</th>
                 <th colspan="2">Update</th>
             </tr>
             {% for result in data %}
@@ -60,7 +60,7 @@
                 <td>{{result.rating}}</td>
                 <td>{{result.address}}</td>
                 
-                <td><img src="{% static 'img/img.jpg' %}" width = "150"></td>
+                <td class="photo1"><img src="{% static 'img/img.jpg' %}" width = "150"></td>
                 <td><a href="edit/{{result.id}}" class="btn btn-secondary">Edit</a></td>
                 <td><a href="Delete/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
             </tr>
@@ -104,7 +104,7 @@
                 <th>Address</th>
                 <th>Martial status</th>
                 <th>Registration date</th>
-                <th>Photo</th>
+                <th colspan="2">Photo</th>
                 <th colspan="2">Update</th>
             </tr>
             {% for result in patdata %}
@@ -120,7 +120,7 @@
                 <td>{{result.address}}</td>
                 <td>{{result.marital}}</td>
                 <td>{{result.registration}}</td>
-                <td><img src="https://image.shutterstock.com/image-vector/user-icon-vector-260nw-249026119.jpg" width = "150"></td>
+                <td colspan="2"><img src="https://image.shutterstock.com/image-vector/user-icon-vector-260nw-249026119.jpg" width = "150"></td>
 
                 <td><a href="editpatient/{{result.id}}" class="btn btn-secondary">Edit</a></td>
                 <td><a href="DeletePatient/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
@@ -160,8 +160,9 @@
                 <th>Appointment Date</th>
                 <th>start time</th>
                 <th>end time</th>
-                <th>Doctor Specilization</th>
+                <th>Doctor SpecID</th>
                 <th>Doctor Name</th>
+                <th>Procedure</th>
                 <th>Contacts</th>
                 <th>Update</th>
             </tr>
@@ -173,6 +174,7 @@
                 <td>{{result.app_end}}</td>
                 <td>{{result.specializationid}}</td>
                 <td>{{result.empname}}</td>
+                <td>{{result.procedure}}</td>
                 <td>{{result.contact}}</td>
                 <td><a href="DeleteAppointment/{{result.id}}" onclick="return confirm('Are you sure that you want to delete it?')" class="btn btn-danger">Delete</a></td>
             </tr>

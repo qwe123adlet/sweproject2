@@ -35,7 +35,7 @@
                 <th>Education</th>
                 <th>Rating</th>
                 <th>Address</th>
-                <th>Photo_2</th>
+                <th colspan="2">Photo_2</th>
                 <th colspan="2">Appointment</th>
             </tr>
             {% for result in data %}
@@ -54,14 +54,15 @@
                 <td>{{result.education}}</td>
                 <td>{{result.rating}}</td>
                 <td>{{result.address}}</td>
-                <td><img src="{% static 'img/img.jpg' %}" width = "150"></td>
-                <td><a href="timetable/{{result.id}}" class="btn btn-secondary">Make an appointment</a></td>
+                <td colspan="2"><img src="{% static 'img/img.jpg' %}" width="150"></td>
+                <td colspan="2"><a href="timetable/{{result.id}}" class="btn btn-secondary">Make an appointment</a></td>
 
             </tr>
-        </div>
             {% endfor %}
+        </table>
+    </div>
                 {% else %}
-            <center><h2>No working doctors with this specialization type</h2></center>
+            <center><h2>No working doctors with this specialization type or procedure</h2></center>
             {% endif %}
 </body>
 </html>

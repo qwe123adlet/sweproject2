@@ -1,6 +1,8 @@
 .main{
   position: relative;
   margin-bottom: 100px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 body{ 
   width: 100%;
@@ -23,19 +25,30 @@ h3{
   position: relative;
 }
 table{
-    /* border: white; */
-    margin-left: 25px;
-    margin-right: 25px;
-    max-width: fit-content;
+    border: white;
+    /* max-width: fit-content; */
     margin-bottom: 50px;
+    table-layout: fixed;
+}
+.showsp{
+  table-layout: auto;
+  max-width: fit-content;
 }
 .tables{
   margin-top: 3%;
+  margin-left: 25px;
+  margin-right: 25px;
 }
   th,
   td {
-      width: 150px;
+    width: fit-content;
     text-align: center;
+    /* overflow: visible;  */
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+  }
+  .photo1{
+    width: 170px;
   }
 
 .container{
@@ -204,3 +217,20 @@ header{
   margin-top: 50px;
   margin-left: 25%;
 }
+#sps{
+  max-width: fit-content;
+  text-align: center;
+  height: fit-content;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* #temp{
+  table-layout: fixed;
+}
+td { 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
+} */

@@ -19,15 +19,20 @@
         <datalist id="docsname">
             {% for result in showdocs %}
                 <option value="{{result.empname}}">
-                <option value="{{result.specializationid}}">
             {% endfor %}
+            {% for result in data %}
+                <option value="{{result.specialization}}">
+            {% endfor %}
+            {% for result in procedure %}
+                <option value="{{result.typeofprocedure}}">
+            {% endfor %}            
         </datalist>  
       </form>
       <h1>SPECIALIZATION TABLE</h1>
     </div></div></nav>
 </header>
 <div class="tables">
-        <table border="1" class="table table-striped table-bordered">
+        <table border="1" class="table table-striped table-bordered showsp">
             <tr>
             <tr>
                 <th>SpecializationID</th>

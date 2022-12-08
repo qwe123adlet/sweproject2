@@ -20,7 +20,7 @@
         <form method="POST" action = "/UpdatePatient/{{EmpModel.id}}">
             {% csrf_token %}
         
-        <table border="1" class="table table-striped table-bordered">
+        <table border="1" class="table table-striped table-bordered showsp">
            <tr>
                 <td>Patient Id</td>
                 <td><input type="text" name="id" value="{{EmpModel.id}}" readonly></td>

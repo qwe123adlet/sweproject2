@@ -13,12 +13,12 @@
     <a href = "{% url 'showspecialization' %}" class="btn btn-info">Back</a>
 </div></div></nav>
 </header>
-<div style="display:inline-block;min-width:100%;">
+<div style="display:inline-block; min-width:100%;">
     {% if post %}
     <center><h2 class="opening">Doctors Found</h2></center>
     {% endif %}
     {% if post1 %}
-    <center><h2 class="opening">Doctors Found</h2></center>
+    <center><h2 class="opening">Procedures Found</h2></center>
     {% endif %}
     {% if post2 %}
     <center><h2 class="opening">Specializations Found</h2></center>
@@ -37,17 +37,19 @@
 {% endfor %}
 {% for i in post1 %}
     <center>
-        <div class ="img_div" class="container">
+        <div class ="img_div" class="container" style="text-align: left;">
             <hr/>
-            <img src="{% static 'img/img.jpg' %}" width = "150" class="searchbar_img">
-            <h2 class="searchbar_name">Dr. {{ i.empname}}</h2>
-            <h3 class="time">Schedule Start: {{ i.schedulestart}}</h3>
-            <h3 class="time">Schedule End: {{ i.scheduleend}}</h3>        
-        <h2 class = "show"><a href="/doctortable/{{i.id}}" class="btn btn-secondary">Select</a>
-    </h2></center>                                                                                             
+            <h2 style="margin-left: 10%; margin-top: 5%;">Procedure Name: {{ i.typeofprocedure}}</h2>
+            <h3 style="margin-left: 10%;">Procedure ID: {{ i.id}}</h3>
+            <center><h2 class = "show"><a href="/showspecialization/doctortableSpec/{{i.procid}}" class="btn btn-secondary" id="sps">Select</a></h2></center>
 {% endfor %}
 {% for i in post2 %}
-    <center><h2 class = "show"><a href="/showspecialization/doctortableSpec/{{i.id}}" class="btn btn-secondary">{{ i.specialization}}</a></h2></center>
+    <center>
+        <div class ="img_div" class="container" style="text-align: left;">
+            <hr/>
+            <h2 style="margin-left: 10%; margin-top: 5%;">Specialization Name: {{ i.specialization}}</h2>
+            <h3 style="margin-left: 10%;">Specialization Id: {{ i.specializationid}}</h3>
+            <center><h2 class = "show"><a href="/showspecialization/doctortableSpec/{{i.id}}" class="btn btn-secondary" id="sps">Select</a></h2></center>
 {% endfor %}
     {% else %}
     <body id="bodyempt">

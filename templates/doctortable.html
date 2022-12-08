@@ -35,7 +35,7 @@
                 <th>Education</th>
                 <th>Rating</th>
                 <th>Address</th>
-                <th>Photo_2</th>
+                <th colspan="2">Photo_2</th>
             </tr>
             {% for result in data %}
             <tr>
@@ -54,7 +54,7 @@
                 <td>{{result.education}}</td>
                 <td>{{result.rating}}</td>
                 <td>{{result.address}}</td>
-                <td><img src="{% static 'img/img.jpg' %}" width = "150"></td>
+                <td colspan="2"><img src="{% static 'img/img.jpg' %}" width = "150"></td>
 
             </tr>
             
